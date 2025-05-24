@@ -10,7 +10,7 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow, QPushButton, QVBoxLayout
 from PyQt6.QtCore import Qt, QPropertyAnimation, QRect, QEasingCurve
 from PyQt6.QtGui import QFont, QPalette, QColor, QLinearGradient, QGradient
 
-from aiPyQtTest import generateGUT;
+#from aiPyQtTest import generateGUT;
 
 #from aiGeneratedFunctions import load_training_data;
 
@@ -34,14 +34,16 @@ def trainNeuralNetwork():
     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
     model.fit(x = x_train,y = y_train, epochs=3)
 
-    model.save("C:/Users/joshu/Desktop/School Year 12/Software engineering/Yr12 Assesment 3 Joshua.Muunoja SEN/JMEodel.keras")
+    model.save("JMEodel.keras")
 
 def evaluateUsingLabeledData():
-    model = tf.keras.models.load_model("C:/Users/joshu/Desktop/School Year 12/Software engineering/Yr12 Assesment 3 Joshua.Muunoja SEN/JMEodel.keras")
+    model = tf.keras.models.load_model("JMEodel.keras")
     image_number = 4
-    while os.path.isfile(f"C:/Users/joshu\Desktop/School Year 12/Software engineering/Yr12 Assesment 3 Joshua.Muunoja SEN/28by28_Drawn/digit{image_number}.png"):
+    print("EVALUATING _____")
+    while os.path.isfile(f"28by28_Drawn/digit{image_number}.png"):
         try:
-            img = cv2.imread(f"C:/Users/joshu\Desktop/School Year 12/Software engineering/Yr12 Assesment 3 Joshua.Muunoja SEN/28by28_Drawn/digit{image_number}.png")[:,:,0]
+            print("ETST")
+            img = cv2.imread(f"28by28_Drawn/digit{image_number}.png")[:,:,0]
             img = np.invert(np.array([img]))
             prediction = model.predict(img)
             print(f"This digit is probably a {np.argmax(prediction)}")
