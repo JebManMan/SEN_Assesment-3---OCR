@@ -40,10 +40,10 @@ def evaluateUsingLabeledData():
     model = tf.keras.models.load_model("JMEodel.keras")
     image_number = 4
     print("EVALUATING _____")
-    while os.path.isfile(f"28by28_Drawn/digit{image_number}.png"):
+    while os.path.isfile(f"28by28_Drawn2/digit{image_number}.png"):
         try:
             print("ETST")
-            img = cv2.imread(f"28by28_Drawn/digit{image_number}.png")[:,:,0]
+            img = cv2.imread(f"28by28_Drawn2/digit{image_number}.png")[:,:,0]
             img = np.invert(np.array([img]))
             prediction = model.predict(img)
             print(f"This digit is probably a {np.argmax(prediction)}")
